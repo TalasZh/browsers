@@ -527,7 +527,7 @@ var options = options || null;
 
   function createFile(filename, content) {
     // release previous url
-    if (porto.sfx) {
+    if (typeof safari !== 'undefined') {
       $.fileDownload('data:application/pgp-keys;charset=utf-8,' + encodeURIComponent(content));
     }
     else {
@@ -538,19 +538,10 @@ var options = options || null;
       var blob = new Blob([content], {type: 'application/pgp-keys'});
       //saveAs(blob, filename);
       keyFile = window.URL.createObjectURL(blob);
-
-      if (porto.crx) {
-        keyFile = window.URL.createObjectURL(blob);
-        var download = $('.bp-keypair-export');
-        download.attr('download', filename)
-            .attr('href', keyFile);
-        download.get(0).click();
-      } else if (porto.webex) {
-        chrome.downloads.download({
-            url: keyFile,
-            filename: filename
-        });
-      }
+      var download = $('.bp-keypair-export');
+      download.attr('download', filename)
+              .attr('href', keyFile);
+      download.get(0).click();
     }
   }
 
@@ -570,11 +561,7 @@ var options = options || null;
                showConfirmButton: false,
                closeOnConfirm: false
              }, function() {
-               try {
-                 createFile($('.bp-export-filename').val(), keyPair);
-               } catch (err) {
-                 console.error(err);
-               }
+               createFile($('.bp-export-filename').val(), keyPair);
                swal2.closeModal();
              });
              $('.bp-export-clipboard').text(keyPair);

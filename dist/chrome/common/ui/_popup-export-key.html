@@ -1,0 +1,25 @@
+<div class="b-popup" id="js-popup-settings">
+  <div class="b-popup__header">
+    <div class="b-title">
+      Export keys
+      <a href="#" class="bp-close-modal-button g-right">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+  </div>
+  <div class="b-popup__body">
+    <div class="b-form-wrapper g-margin-bottom">
+                <textarea id="key"
+                          class="b-form-input b-form-input_full b-form-input_textarea bp-export-clipboard"
+                          style="font-size:12px; height: 200px; font-family: monospace; resize: none" tabindex="0">
+                  Paste key text here
+                </textarea>
+    </div>
+    <div>
+      <input id="export" type="text" class="b-form-input b-form-input_fix-size-2 bp-export-filename" tabindex="1">
+      <a class="bp-keypair-export hide" data-l10n-id="key_export_download" style="display: none"></a>
+      <button class="b-btn b-btn_blue confirm g-right" tabindex="2"><i class="fa fa-arrow-up"></i> Export</button>
+    </div>
+
+  </div>
+</div>

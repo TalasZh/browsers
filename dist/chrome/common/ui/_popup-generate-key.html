@@ -1,0 +1,83 @@
+<div class="b-popup" id="js-popup-settings">
+  <div class="b-popup__header">
+    <div class="b-title">
+      Generate key
+      <a href="#" class="bp-close-modal-button g-right">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+  </div>
+  <div class="b-popup__body">
+    <div class="b-form">
+      <span id="error-msg" style="display: none" class="b-form-hint b-form-hint_red">Email already exists.</span>
+      <div class="b-form-wrapper g-margin-bottom" style="display: none">
+        <label for="name" class="b-form-label g-margin-right">Enter key name</label>
+        <input id="name" type="text" class="b-form-input g-right" placeholder="Name">
+      </div>
+      <div class="b-form-wrapper g-margin-bottom">
+        <label for="email" class="b-form-label g-margin-right">Enter email</label>
+        <input id="email" type="email" class="b-form-input g-right" placeholder="Enter e-mail"
+               tabindex="2">
+      </div>
+    </div>
+
+    <div class="b-toggle-wrapper">
+      <a href="#" class="toggle">
+        <input type="checkbox" class="check" id="protectkey">
+        <div class="toggle-bg"></div>
+        <b class="b switch"></b>
+      </a>
+
+      <label for="protectkey" class="b-form-label">Protect your key with password</label>
+
+      <div class="js-passwd-hide">
+        <div class="b-form-wrapper g-margin-bottom-half">
+          <label for="password" class="b-form-label g-margin-right">Enter password</label>
+          <input id="password" type="password" class="b-form-input g-right"
+                 placeholder="Enter password">
+        </div>
+        <div class="b-form-wrapper g-margin-bottom-half">
+          <label for="password-confirm" class="b-form-label g-margin-right">Confirm password</label>
+          <input id="password-confirm" type="password" class="b-form-input g-right"
+                 placeholder="Confirm password">
+        </div>
+      </div>
+    </div>
+
+    <div class="b-toggle-wrapper" style="display: none">
+      <a href="#" class="toggle">
+        <input type="checkbox" class="check" id="advanced">
+        <div class="toggle-bg"></div>
+        <b class="b switch"></b>
+      </a>
+
+      <label for="advanced" class="b-form-label">Advanced</label>
+
+      <div class="js-advanced-hide ">
+        <div class="b-form-wrapper g-margin-bottom-half">
+          <label for="algorythm" class="b-form-label g-margin-right">Algorithm</label>
+          <select id="algorythm" class="b-form-input g-right">
+            <option value="RSA/RSA">RSA/RSA</option>
+          </select>
+        </div>
+        <div class="b-form-wrapper g-margin-bottom-half">
+          <label for="keysize" class="b-form-label g-margin-right">Key size (bits)</label>
+          <select id="keysize" class="b-form-input g-right">
+            <option value="4096">4096</option>
+          </select>
+        </div>
+        <div class="b-form-wrapper g-margin-bottom">
+          <label for="expiration" class="b-form-label g-margin-right">Expiration</label>
+
+          <div class="b-form-group g-right">
+            <select id="expiration" class="b-form-input b-form-input_fix-size-3 g-right">
+              <option value="never">Never</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="b-btn b-btn_green confirm g-right" tabindex="1">Generate</button>
+    <div class="clear"></div>
+  </div>
+</div>

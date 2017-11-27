@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subutai E2E Plugin - Keys</title>
+
+  <!--CSS Libs-->
+  <link rel="stylesheet" href="../css/libs/font-awesome.min.css"/>
+  <link rel="stylesheet" href="../css/libs/colorbox.css"/>
+  <link rel="stylesheet" href="../css/libs/sweetalert2.css"/>
+  <link rel="icon" href="../img/icons/ss-icon48x48.png"/>
+
+  <!--CSS-->
+  <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+
+<div class="b-content">
+
+  <nav class="b-nav b-nav_left">
+    <div class="b-header__logo">
+      <div class="b-header-logo">
+        <a href="#">
+          <img src="../assets/elements/logo.svg" alt="" height="40px"/>
+        </a>
+      </div>
+    </div>
+    <ul class="b-nav__menu">
+      <li class="b-nav-menu b-nav-menu_active">
+        <a href="keys.html" class="b-nav-menu-link">
+				<span class="b-nav-menu__icon b-nav-menu-link__item">
+            <svg class="b-nav-menu-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="..\assets\elements\icons.svg#nav-keys"></use>
+            </svg>
+				</span><!--
+					--><span class="b-nav-menu__title b-nav-menu-link__item">
+					Keys
+				</span>
+        </a>
+      </li>
+      <li class="b-nav-menu">
+        <a href="managements.html" class="b-nav-menu-link">
+				<span class="b-nav-menu__icon b-nav-menu-link__item">
+            <svg class="b-nav-menu-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="..\assets\elements\icons.svg#nav-peers"></use>
+            </svg>
+				</span><!--
+					--><span class="b-nav-menu__title b-nav-menu-link__item">
+					Peers
+				</span>
+        </a>
+      </li>
+      <!--TODO bring back options-->
+      <!--<li class="b-nav-menu">-->
+        <!--<a href="options_new.html" class="b-nav-menu-link">-->
+				<!--<span class="b-nav-menu__icon b-nav-menu-link__item">-->
+                    <!--<svg version="1.1" class="b-nav-menu-icon"  id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"-->
+                         <!--viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">-->
+                    <!--<path fill="#04346E" d="M14,9V7h-2.1c-0.1-0.4-0.2-0.7-0.4-1l1.5-1.5l-1.4-1.4L10,4.6C9.7,4.4,9.4,4.2,9,4.1V2H7v2.1-->
+                        <!--C6.6,4.2,6.3,4.4,6,4.6L4.5,3.1L3.1,4.5L4.6,6C4.4,6.3,4.2,6.6,4.1,7H2v2h2.1c0.1,0.4,0.2,0.7,0.4,1l-1.5,1.5l1.4,1.4L6,11.4-->
+                        <!--c0.3,0.2,0.7,0.3,1,0.4V14h2v-2.1c0.4-0.1,0.7-0.2,1-0.4l1.5,1.5l1.4-1.4L11.4,10c0.2-0.3,0.3-0.7,0.4-1H14z M8,10c-1.1,0-2-0.9-2-2-->
+                        <!--c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z"/>-->
+                    <!--</svg>-->
+				<!--</span>&lt;!&ndash;-->
+					<!--&ndash;&gt;<span class="b-nav-menu__title b-nav-menu-link__item">-->
+					<!--Options-->
+				<!--</span>-->
+        <!--</a>-->
+      <!--</li>-->
+    </ul>
+    <div class="b-nav-blocked"></div>
+  </nav>
+
+
+  <div class="b-workspace">
+    <div class="b-workspace__header">
+      <div class="g-right">
+        <button class="b-btn b-btn_blue bp-import-key-modal js-cbox-modal g-margin-right-half"><i class="fa fa-arrow-down"></i> Import</button>
+        <button class="b-btn b-btn_green bp-generate-key-modal"><i class="fa fa-plus "></i> Generate</button>
+      </div>
+      <h1 class="b-title">Keys</h1>
+    </div>
+
+    <div class="b-workspace__content">
+      <div class="b-workspace-content g-padding-0">
+        <div class="g-margin-bottom">
+          <div class="b-form">
+            <button class="b-btn b-btn_blue g-right bp-export-keys-modal">
+              <i class="fa fa-arrow-up"></i> Export
+            </button>
+
+            <select id="key-types" class="b-form-input b-form-input_dropdown" style="width: auto">
+              <option value="All keys">All keys</option>
+              <option value="public">Public keys</option>
+              <option value="key-pair">Key pairs</option>
+            </select>
+          </div>
+        </div>
+        <div class="b-main-table-border">
+          <table class="b-main-table">
+            <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Key ID</th>
+              <th>Peers</th>
+              <th>Export</th>
+              <th>Information</th>
+              <th>Delete</th>
+            </tr>
+            </thead>
+            <tr class="js-empty-table" style="display: none"><td valign="top" colspan="8" style="text-align: center;">No data available in table</td></tr>
+            <tbody class="b-main-table-body" style="display: none">
+            <!--// Template-->
+            <tr>
+              <td class="b-main-table__container-status"></td>
+              <td class="b-main-table__name key-name"><i class="b-icon b-icon_award g-margin-left"></i></td><!--name-->
+              <td class="b-main-table__name key-email"></td><!--email-->
+              <td class="b-main-table__capitalize key-id"></td> <!--keyid-->
+              <td class="b-main-table__controls key-peers"></td><!--peers-->
+              <td class="b-main-table__container-status key-export"><!--export-->
+                <a href="#"
+                   class="b-link b-link_export bp-key-export">
+                  <i class="fa fa-paper-plane"></i>
+                </a>
+              </td>
+              <td class="b-main-table__container-status key-info"><!--information-->
+                <a href="#"
+                   class="b-link b-link_settings bp-key-info">
+                  <i class="fa fa-info-circle"></i>
+                </a>
+              </td>
+              <td class="b-main-table__container-status key-delete"><!--delete-->
+                <a href="#" class="b-icon b-icon_remove">
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="clear"></div>
+</div>
+
+
+<!-- BASE -->
+<script src="../dep/jquery.min.js"></script>
+<script src="../dep/jquery.ext.js"></script>
+<!--<script src="../scripts/libs/jquery-2.1.1.min.js"></script>-->
+<script src="../scripts/libs/jquery.fileDownload.js"></script>
+<script src="../scripts/libs/sweetalert2.js"></script>
+<script src="./porto.js"></script>
+<script src="./messageDispatcher.js"></script>
+<script src="./keys.js"></script>
+<!--<script src="../scripts/scripts.js"></script>-->
+</body>
+</html>

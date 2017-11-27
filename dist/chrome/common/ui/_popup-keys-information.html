@@ -1,0 +1,118 @@
+<div class="b-popup">
+  <div class="b-popup__body g-padding-0">
+    <a href="#" class="bp-close-modal-button g-right" style="padding: 15px; font-size: 16px;">
+      <i class="fa fa-times"></i>
+    </a>
+    <div class="b-tabs g-margin-bottom">
+      <input id="tab1" type="radio" name="tabs" class="b-tabs__input" checked>
+      <label for="tab1" class="b-tabs__label">Main key</label>
+
+      <input id="tab2" type="radio" name="tabs" class="b-tabs__input">
+      <label for="tab2" class="b-tabs__label">Subkeys</label>
+
+      <input id="tab3" type="radio" name="tabs" class="b-tabs__input">
+      <label for="tab3" class="b-tabs__label">User IDs</label>
+
+      <section id="content1">
+        <div class="b-form">
+          <div class="b-form-wrapper g-margin-bottom-half">
+            <label for="keyname" class="b-form-label g-margin-right">Name</label>
+            <input id="keyname" type="text" readonly class="b-form-input b-form-input_fix-size-2 g-right">
+          </div>
+          <div class="b-form-wrapper g-margin-bottom-half">
+            <label for="keyid" class="b-form-label g-margin-right">Key ID</label>
+            <input id="keyid" type="text" readonly class="b-form-input b-form-input_fix-size-2 g-right">
+          </div>
+          <div class="b-form-wrapper g-margin-bottom-half">
+            <label for="keyalgorithm" class="b-form-label g-margin-right">Algorithm</label>
+            <input id="keyalgorithm" type="text" readonly class="b-form-input b-form-input_fix-size-2 g-right">
+          </div>
+          <div class="b-form-wrapper g-margin-bottom-half">
+            <label for="keylength" class="b-form-label g-margin-right">Length</label>
+            <input id="keylength" type="text" readonly class="b-form-input b-form-input_fix-size-2 g-right">
+          </div>
+          <div class="b-form-wrapper g-margin-bottom-half">
+            <label for="keycreationdate" class="b-form-label g-margin-right">Creation date</label>
+            <input id="keycreationdate" type="text" readonly class="b-form-input b-form-input_fix-size-2 g-right">
+          </div>
+          <div class="b-form-wrapper g-margin-bottom-half">
+            <label for="keyexpirationdate" class="b-form-label g-margin-right">Expiration date</label>
+            <input id="keyexpirationdate" type="text" readonly class="b-form-input b-form-input_fix-size-2 g-right">
+          </div>
+          <div class="b-form-wrapper g-margin-bottom-half">
+            <label for="keyfingerprint" class="b-form-label g-margin-right">Fingerprint</label>
+            <input id="keyfingerprint" type="text" readonly class="b-form-input b-form-input_fix-size-2 g-right">
+          </div>
+          <div>
+            <div class="g-right b-form-label">
+              <span class="g-bold">Type</span> Key pair
+            </div>
+            <div class="b-form-label">
+              <span class="g-bold">Status</span> <span class="b-tags b-tags_green">Valid</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="content2">
+        <div class="b-form">
+          <div class="b-form-wrapper g-margin-bottom">
+            <label for="subkey_collection" class="b-form-label g-margin-right">ID</label>
+            <div class="b-form-input_80 g-right">
+              <select id="subkey_collection"
+                      class="b-form-input b-form-input_dropdown">
+                <option value="874357hds">874357hds</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="b-form">
+          <div class="b-form-wrapper g-margin-bottom-half">
+            <label for="subkey_algorithm" class="b-form-label g-margin-right">Algorithm</label>
+            <input id="subkey_algorithm" type="text" readonly class="b-form-input b-form-input_fix-size-2 g-right">
+          </div>
+          <div class="b-form-wrapper g-margin-bottom-half">
+            <label for="subkey_length" class="b-form-label g-margin-right">Length</label>
+            <input id="subkey_length" type="text" readonly class="b-form-input b-form-input_fix-size-2 g-right">
+          </div>
+          <div class="b-form-wrapper g-margin-bottom-half">
+            <label for="subkey_creationdate" class="b-form-label g-margin-right">Creation date</label>
+            <input id="subkey_creationdate" type="text" readonly class="b-form-input b-form-input_fix-size-2 g-right">
+          </div>
+          <div class="b-form-wrapper g-margin-bottom-half">
+            <label for="subkey_expirationdate" class="b-form-label g-margin-right">Expiration date</label>
+            <input id="subkey_expirationdate" type="text" readonly class="b-form-input b-form-input_fix-size-2 g-right">
+          </div>
+          <div class="b-form-wrapper">
+            <label for="subkey_fingerprint" class="b-form-label g-margin-right">Fingerprint</label>
+            <input id="subkey_fingerprint" type="text" readonly class="b-form-input  b-form-input_fix-size-2 g-right">
+          </div>
+        </div>
+      </section>
+      <section id="content3">
+        <div class="b-form">
+          <div class="b-form-wrapper g-margin-bottom">
+            <label for="user_collection" class="b-form-label g-margin-right">ID</label>
+            <div class="b-form-input_80 g-right">
+              <select id="user_collection"
+                      class="b-form-input b-form-input_dropdown">
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="b-main-table-border">
+          <table class="b-main-table" id="key_signatures">
+            <thead>
+            <tr>
+              <th>Signatory</th>
+              <th>Key ID</th>
+              <th>Created</th>
+            </tr>
+            </thead>
+            <tbody class="signature-list">
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{
+  "version": "3.0.0",
+  "watch_list": [
+    {
+      "active": true,
+      "site": "All",
+      "frames": [
+        {
+          "scan": true,
+          "frame": "*",
+          "api": false
+        }
+      ]
+    }
+  ],
+  "preferences": {
+    "security": {
+      "editor_mode": "webmail",
+      "display_decrypted": "inline",
+      "secureBgndColor": "#f5f5f5",
+      "secureBgndIconColor": "#04346E",
+      "secureBgndColorId": 0,
+      "password_cache": true,
+      "password_timeout": 30
+    },
+    "general": {
+      "editor_type": "plain",
+      "auto_add_primary": true
+    },
+    "main_active": true
+  }
+}

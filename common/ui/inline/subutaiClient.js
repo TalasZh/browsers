@@ -101,7 +101,7 @@ porto.subutai.intervalSSID = 0;
         .fail(function(xhr, status, errorThrown) {
           swal2.enableButtons();
           swal2({
-            title: "Oh, snap",
+            title: "Oops,",
             text: errorThrown,
             type: "error",
             customClass: "b-warning"
@@ -124,7 +124,7 @@ porto.subutai.intervalSSID = 0;
       .fail(function(xhr, status, errorThrown) {
         swal2.enableButtons();
         swal2({
-          title: "Oh, snap",
+          title: "Oops,",
           text: errorThrown,
           type: "error",
           customClass: "b-warning"
@@ -153,7 +153,7 @@ porto.subutai.intervalSSID = 0;
       .fail(function(xhr, status, errorThrown) {
         swal2.enableButtons();
         swal2({
-          title: "Oh, snap",
+          title: "Oops,",
           text: errorThrown,
           type: "error",
           customClass: "b-warning"
@@ -184,7 +184,7 @@ porto.subutai.intervalSSID = 0;
       .fail(function(xhr, status, errorThrown) {
         swal2.enableButtons();
         swal2({
-          title: "Oh, snap",
+          title: "Oops,",
           text: errorThrown,
           type: "error",
           customClass: "b-warning"
@@ -312,7 +312,7 @@ porto.subutai.intervalSSID = 0;
       }
       else {
         swal2({
-          title: "Oh, snap error ",
+          title: "Oops, error ",
           text: "SubutaiTray and Hub user didn't match!?!?",
           type: "error",
           customClass: "b-warning"
@@ -351,7 +351,7 @@ porto.subutai.intervalSSID = 0;
           var parseError = parseStep1[1].split('==');
           if (parseError[1]) {
             swal2({
-              title: "Oh, snap error " + parseStep1[0],
+              title: "Oops, error " + parseStep1[0],
               text: parseError[1],
               type: "error",
               customClass: "b-warning"

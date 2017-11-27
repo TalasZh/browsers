@@ -1,0 +1,39 @@
+html, body {
+  height: 100%;
+  background-color: rgba(0,0,0,0);
+}
+
+.hide_bg {
+  background-color: rgba(254,251,243,1);
+}
+
+.busy {
+  cursor: wait !important;
+}
+
+#keyDialog {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+#keyList {
+  /* https://bugs.webkit.org/show_bug.cgi?id=28900 */
+  height: 60px;
+  font-size: 12px;
+  padding: 0;
+}
+
+#keyList option {
+  padding: 3px 6px;
+}
+
+#keyDialog h5 {
+  margin: 0;
+}
+
+#keySelect {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
