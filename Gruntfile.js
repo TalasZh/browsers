@@ -25,7 +25,9 @@ module.exports = function(grunt) {
           'chrome/lib/*.js',
           'firefox/data/*.js',
           'firefox/lib/*.js',
-          'e2e-plugin.safariextension/lib/*.js'
+          'e2e-plugin.safariextension/lib/*.js',
+          'edge/background.js',
+          'edge/lib/*.js',
         ]
       }
     },
@@ -45,13 +47,15 @@ module.exports = function(grunt) {
           'chrome/background.js',
           'chrome/lib/*.js',
           'firefox/data/*.js',
-          'firefox/lib/*.js'
+          'firefox/lib/*.js',
+          'edge/background.js',
+          'edge/lib/*.js',
         ]
       }
     },
 
-    jsdoc : {
-      dist : {
+    jsdoc: {
+      dist: {
         src: ["doc/client-api/Readme.md"],
         options: {
           destination: 'build/doc',
@@ -139,7 +143,13 @@ module.exports = function(grunt) {
             cwd: 'bower_components/requirejs/',
             src: 'require.js',
             dest: 'build/firefox/'
-          }
+          },
+          {
+            expand: true,
+            cwd: 'bower_components/requirejs/',
+            src: 'require.js',
+            dest: 'build/edge/'
+          },
         ]
       },
       common: {
@@ -155,7 +165,7 @@ module.exports = function(grunt) {
       },
       plugins: {
         files: [{
-          src: ['chrome/**/*', 'firefox/**/*', 'e2e-plugin.safariextension/**/*'],
+          src: ['chrome/**/*', 'firefox/**/*', 'e2e-plugin.safariextension/**/*', 'edge/**/*'],
           dest: 'build/'
         }]
       },
@@ -223,6 +233,24 @@ module.exports = function(grunt) {
           src: '**/*',
           cwd: 'locales',
           dest: 'build/firefox/_locales'
+          },
+          {
+            expand: true,
+            src: ['common/**/*', '!common/lib/**/*'],
+            cwd: 'build/',
+            dest: 'build/edge/'
+          },
+          {
+            expand: true,
+            src: '**/*',
+            cwd: 'build/common/lib/',
+            dest: 'build/edge/lib/common/'
+          },
+          {
+            expand: true,
+            src: '**/*',
+            cwd: 'locales',
+            dest: 'build/edge/_locales'
         }
       ]
       },
@@ -317,6 +345,35 @@ module.exports = function(grunt) {
           rename: function(dest) {
             return dest + 'emailjs-punycode.js';
           }
+        },
+        {
+          expand: true,
+          flatten: true,
+          src: ['dep/edge/openpgpjs/openpgp.js', 'dep/edge/openpgpjs/openpgp.worker.js'],
+          dest: 'build/edge/dep/'
+        },
+        {
+          expand: true,
+          flatten: true,
+          cwd: 'node_modules/',
+          src: [
+            'mailreader/src/mailreader-parser.js',
+            'mailreader/node_modules/emailjs-mime-parser/src/*.js',
+            'mailreader/node_modules/emailjs-mime-parser/node_modules/emailjs-addressparser/src/*.js',
+            'emailjs-mime-codec/src/*.js',
+            'emailjs-mime-builder/src/*.js',
+            'emailjs-mime-builder/node_modules/emailjs-mime-types/src/*.js'
+          ],
+          dest: 'build/edge/lib/'
+        },
+        {
+          expand: true,
+          flatten: true,
+          src: 'node_modules/emailjs-mime-builder/node_modules/punycode/*.js',
+          dest: 'build/edge/lib/',
+          rename: function(dest) {
+            return dest + 'emailjs-punycode.js';
+          }
         }
       ]
       }
@@ -324,8 +381,8 @@ module.exports = function(grunt) {
 
     watch: {
       scripts: {
-        files: ['Gruntfile.js', '{common,dep,chrome,firefox,e2e-plugin.safariextension}/**/*'],
-        tasks: ['default', 'dist-ff', 'dist-cr'],
+        files: ['Gruntfile.js', '{common,dep,chrome,firefox,e2e-plugin.safariextension,edge}/**/*'],
+        tasks: ['default', 'dist-ff', 'dist-cr', 'dist-edge', 'dist-sf'],
         options: {
           spawn: false
         }
@@ -342,6 +399,30 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           src: ['chrome/**/*', 'chrome/!**/.*'],
+          cwd: 'build/'
+        }]
+      },
+      safari: {
+        options: {
+          mode: 'zip',
+          archive: 'dist/e2e-plugin.safariextension.zip',
+          pretty: true
+        },
+        files: [{
+          expand: true,
+          src: ['e2e-plugin.safariextension/**/*', 'e2e-plugin.safariextension/!**/.*'],
+          cwd: 'build/'
+        }]
+      },
+      edge: {
+        options: {
+          mode: 'zip',
+          archive: 'dist/e2e-plugin.edge.zip',
+          pretty: true
+        },
+        files: [{
+          expand: true,
+          src: ['edge/**/*', 'edge/!**/.*'],
           cwd: 'build/'
         }]
       }
@@ -384,7 +465,7 @@ module.exports = function(grunt) {
         commitFiles: ['-a'],
         createTag: false,
         push: false,
-        files: ['package.json', 'bower.json', 'chrome/manifest.json', 'firefox/package.json', 'common/res/defaults.json']
+        files: ['package.json', 'bower.json', 'chrome/manifest.json', 'firefox/manifest.json', 'e2e-plugin.safariextension/Info.plist', 'edge/manifest.json', 'common/res/defaults.json']
       }
     }
   });
@@ -409,9 +490,10 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dist-ff', ['shell:webex_build', 'shell:move_firefox_dist']);
   grunt.registerTask('sign-ffa', function() {
-    grunt.util.spawn({cmd: 'sign-dist/ffa-sign.sh', args: ['cert/ffa-api-credentials.sh', 'dist/e2e-plugin.firefox.zip']});
+    grunt.util.spawn({ cmd: 'sign-dist/ffa-sign.sh', args: ['cert/ffa-api-credentials.sh', 'dist/e2e-plugin.firefox.zip'] });
   });
-  grunt.registerTask('dist-doc', ['jsdoc', 'compress:doc']);
+  grunt.registerTask('dist-sf', ['compress:safari']);
+  grunt.registerTask('dist-edge', ['compress:edge']);
 
   grunt.registerTask('copy_common', ['copy:vendor', 'copy:common', 'replace:bootstrap']);
   grunt.registerTask('final_assembly', ['copy:plugins', 'copy:common_browser', 'copy:dep']);

@@ -550,6 +550,8 @@ var options = options || null;
             url: keyFile,
             filename: filename
         });
+      } else if (porto.edge) {
+        window.navigator.msSaveOrOpenBlob(blob, filename);
       }
     }
   }

@@ -1,12 +1,15 @@
 /* jshint strict: false */
 
 var porto = porto || {};
-// web extension
-porto.webex = typeof browser !== 'undefined';
-// safari extension
-porto.sfx = typeof safari !== 'undefined';
-// chrome extension
-porto.crx = !porto.webex && typeof chrome !== 'undefined';
+
+if (!porto.typeLoaded) {
+  // web extension
+  porto.webex = typeof browser !== 'undefined';
+  // safari extension
+  porto.sfx = typeof safari !== 'undefined';
+  // chrome extension
+  porto.crx = !porto.webex && typeof chrome !== 'undefined';
+}
 
 /* constants */
 
@@ -587,6 +590,14 @@ porto.util.getHash = function() {
     result += buf[i].toString(16);
   }
   return result;
+};
+
+porto.util.csGetHash = function() {
+  return new Promise(function(resolve, reject) {
+    porto.extension.sendMessage({event: "gen-hash"}, function(hash) {
+      resolve(hash);
+    });
+  });
 };
 
 porto.util.encodeHTML = function(text) {

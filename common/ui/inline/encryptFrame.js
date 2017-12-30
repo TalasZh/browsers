@@ -3,7 +3,6 @@
 var porto = porto || {};
 
 porto.EncryptFrame = function(prefs) {
-  this.id = porto.util.getHash();
   this._editElement = null;
   this._eFrame = null;
   this._eDialog = null;
@@ -17,6 +16,13 @@ porto.EncryptFrame = function(prefs) {
   this._editorType = porto.PLAIN_TEXT; //prefs.general.editor_type;
   this._options = {expanded: false, closeBtn: true};
   this._keyCounter = 0;
+  var that = this;
+  return new Promise(function(resolve, reject) {
+    porto.util.csGetHash().then(function(hash) {
+      that.id = hash;
+      resolve(that);
+    });
+  });
 };
 
 porto.EncryptFrame.prototype.attachTo = function(element, options) {

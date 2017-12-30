@@ -10,7 +10,9 @@ porto.main.regex = /END\sPGP/;
 porto.main.minEditHeight = 84;
 porto.main.contextTarget = null;
 porto.main.prefs = null;
-porto.main.name = 'mainCS-' + porto.util.getHash();
+porto.util.csGetHash().then(function(hash) {
+  porto.main.name = 'mainCS-' + hash;
+});
 porto.main.port = null;
 
 porto.main.connect = function() {
@@ -229,31 +231,33 @@ porto.main.attachEncryptFrame = function(element, expanded) {
   });
   // create new encrypt frames for new discovered editable fields
   newObj.each(function(index, element) {
-    var eFrame = new porto.EncryptFrame(porto.main.prefs);
-    if ($(element).hasClass('bp-sign-target')) {
-      eFrame.attachTo($(element), {
-          expanded: expanded,
-          su_fingerprint: getCookie('su_fingerprint'),
-          context: "bp-sign-target"
-        }
-      );
-    }
-    else if ($(element).hasClass('bp-set-pub-key')) {
-      eFrame.attachTo($(element), {
-          expanded: expanded,
-          su_fingerprint: getCookie('su_fingerprint'),
-          context: "bp-set-pub-key"
-        }
-      );
-    }
-    else if ($(element).hasClass('e2e-sign-message')) {
-      eFrame.attachTo($(element), {
-          expanded: expanded,
-          su_fingerprint: getCookie('su_fingerprint'),
-          context: "e2e-sign-message"
-        }
-      );
-    }
+    new porto.EncryptFrame(porto.main.prefs).then(function(frame) {
+      var eFrame = frame;
+      if ($(element).hasClass('bp-sign-target')) {
+        eFrame.attachTo($(element), {
+            expanded: expanded,
+            su_fingerprint: getCookie('su_fingerprint'),
+            context: "bp-sign-target"
+          }
+        );
+      }
+      else if ($(element).hasClass('bp-set-pub-key')) {
+        eFrame.attachTo($(element), {
+            expanded: expanded,
+            su_fingerprint: getCookie('su_fingerprint'),
+            context: "bp-set-pub-key"
+          }
+        );
+      }
+      else if ($(element).hasClass('e2e-sign-message')) {
+        eFrame.attachTo($(element), {
+            expanded: expanded,
+            su_fingerprint: getCookie('su_fingerprint'),
+            context: "e2e-sign-message"
+          }
+        );
+      }
+    });
   });
 };
 

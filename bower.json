@@ -12,7 +12,7 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "https://code.jquery.com/jquery-2.1.0.min.js",
+    "jquery": "https://code.jquery.com/jquery-2.2.4.min.js",
     "bootstrap": "~3.3.1",
     "requirejs": "2.1.14",
     "dompurify": "0.7.3",
@@ -20,6 +20,6 @@
     "qrcodejs": "0.1.0"
   },
   "resolutions": {
-    "jquery": "e-tag:54499a47-"
+    "jquery": "e-tag:W/\"573f485"
   }
 }

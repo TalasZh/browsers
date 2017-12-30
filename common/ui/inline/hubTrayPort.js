@@ -25,7 +25,7 @@ porto.trayPort.intervalSSID = 0;
   //parser.hash;     // => "#hash"
   //parser.host;     // => "example.com:3000"
 
-  var origin = parser.origin;
+  var origin = document.location.origin;
   porto.extension.sendMessage({event: "get-version"}, function(version) {
     var input = $('#bp-plugin-version');
     if (input.length > 0) {

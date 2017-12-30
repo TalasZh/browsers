@@ -41,8 +41,8 @@ define(function(require, exports, module) {
     if (request.api_event) {
       return;
     }
-    console.log('main.controller::handleMessageEvent');
-    console.log(request);
+    //console.log('main.controller::handleMessageEvent');
+    //console.log(request.event);
     //console.trace();
     switch (request.event) {
       case 'pgpmodel':
@@ -194,9 +194,27 @@ define(function(require, exports, module) {
       case "open-tab":
         porto.tabs.create(request.link);
         break;
+      case 'gen-hash':
+        sendResponse(genHash());
+        break;
       default:
         console.log('unknown event:', request);
     }
+  }
+
+  function genHash() {
+    var result = '';
+    var buf = new Uint16Array(6);
+    if (typeof window !== 'undefined') {
+      window.crypto.getRandomValues(buf);
+    }
+    else {
+      porto.util.getDOMWindow().crypto.getRandomValues(buf);
+    }
+    for (var i = 0; i < buf.length; i++) {
+      result += buf[i].toString(16);
+    }
+    return result;
   }
 
   function methodEvent(thisArg, request, sendResponse) {
